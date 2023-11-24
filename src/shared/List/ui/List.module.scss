@@ -1,0 +1,12 @@
+.mainContainer {
+    padding: 24px 40px;
+}
+
+.List {
+    width: 592px;
+    height: 680px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow: auto;
+}
