@@ -9,7 +9,15 @@
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 
+  /* colors */
   --Black-1: #292930;
+  --Gray-1: #6B6B7B;
+  --Gray-2: #9C9CB0;
+  --Violet: #6764F1;
+  --Violet-2: #8280ff;
+  --Black-2: #303038;
+  --White-1: #F5F5F5;
+  --Yellow: #EFB62B;
 
   --primary-glow: conic-gradient(
     from 180deg at 50% 50%,
