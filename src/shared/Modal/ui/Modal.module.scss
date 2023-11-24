@@ -5,4 +5,92 @@
     border-radius: 8px;
     border: 2px solid rgba(255, 255, 255, 0.08);
     background-color: var(--Black-1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 25px;
+
+    span[class*=MuiTabs-indicator] {
+        background-color: var(--Black-1);
+        transition: 0s;
+    }
+
+    button[class*=Mui-selected] {
+        color: var(--Violet);
+        border-bottom-color: transparent;
+        position: relative;
+        z-index: 999;
+        border-left: 3px solid rgba(255, 255, 255, 0.08);
+        transform: scale(1.05);
+    }
+}
+
+.tabsContainer {
+    width: 100%;
+    height: 100%;
+    flex-shrink: 0;
+    border-radius: 8px;
+    border: 3px solid rgba(255, 255, 255, 0.08);
+    background-color: var(--Black-1);
+}
+
+.SaveButton {
+    background-color: var(--Violet);
+    box-shadow: 0 4px 40px 0 rgba(104, 102, 234, 0.24);
+    color: var(--White-1);
+    text-shadow: 0 4px 8px rgba(245, 245, 245, 0.24);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
+    &:hover {
+        background-color: var(--Violet-2);
+    }
+}
+
+.Tab {
+    &:first-of-type {
+        border-left: none !important;
+    }
+    &:not(:last-of-type) {
+        border-right: 3px solid rgba(255, 255, 255, 0.08);
+    }
+    width: 254px;
+    height: 48px;
+    border-radius: 8px 8px 0 0;
+    color: var(--Gray-2);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    border-bottom: 3px solid rgba(255, 255, 255, 0.08);
+    background-color: var(--Black-1);
+    &:focus {
+        box-shadow: 0 4px 8px 0 rgba(103, 100, 241, 0.16) inset;
+    }
+}
+
+.tabContent {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    padding: 24px 40px;
+}
+
+.leftSide {
+    background: red;
+    height: 100%;
+    flex: 1;
+}
+
+.rightSide {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 16px;
+    border-radius: 8px;
+    background: var(--Black-2);
+    height: 100%;
+    flex: 2;
 }
