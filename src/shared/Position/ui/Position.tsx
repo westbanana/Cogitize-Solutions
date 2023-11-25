@@ -7,18 +7,42 @@ import {useDispatch, useSelector} from "react-redux";
 import {getList} from "@/shared/List/model/selectors/getList/getList";
 import {getPosition} from "@/shared/Position/model/selectors/getPosition/getPosition";
 import {positionActions} from "@/shared/Position/model/slice/PositionSlice";
+import {Draggable} from "react-beautiful-dnd";
+
+export interface  IDuties {
+  trade: {
+    sell: boolean,
+    list: boolean,
+    view: boolean,
+  },
+  production: {
+    purchase: boolean,
+    appoint: boolean,
+  },
+  disassembly: {
+    duel: boolean,
+    makeClaims: boolean
+  },
+  control: {
+    appointPositions: boolean,
+    kick: boolean
+  }
+}
+
 export interface IPositionData {
   positionTitle: string,
   sumPerHour: number,
   otherInfo: string,
-  id: number
+  id: string,
+  duties: IDuties | null
 }
 
 interface PositionProps {
-  positionData: IPositionData
+  positionData: IPositionData,
+  index: number
 }
 
-export const Position: FC<PositionProps> = ({positionData}) => {
+export const Position: FC<PositionProps> = ({positionData, index}) => {
   const {positionTitle, sumPerHour, otherInfo} = positionData
   
   const dispatch = useDispatch()
@@ -26,9 +50,13 @@ export const Position: FC<PositionProps> = ({positionData}) => {
   const selectPosition = (e: React.MouseEvent<HTMLDivElement>) => {
     dispatch(positionActions.selectPosition(positionData))
   }
+  
   return (
     <div
-      className={cls.mainContainer}
+      className={`
+              ${cls.mainContainer}
+              ${position?.id === positionData?.id && cls.selectedPosition}
+            `}
       onClick={selectPosition}
     >
       <div className={cls.dndHolder}>

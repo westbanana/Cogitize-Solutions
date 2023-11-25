@@ -15,6 +15,10 @@
     }
 }
 
+.selectedPosition {
+    border-color: var(--Violet);
+}
+
 .infoContainer {
     display: flex;
     flex-direction: column;
