@@ -1,23 +1,23 @@
 .mainContainer {
+    overflow: auto;
 }
 
 .List {
-    height: 100%;
     display: flex;
     flex-direction: column;
     gap: 8px;
     //padding-right: 5px;
 }
 
-//.mainContainer::-webkit-scrollbar {
-//    width: 4px;
-//}
-//
-//.mainContainer::-webkit-scrollbar-track {
-//    background: transparent;
-//}
-//
-//.mainContainer::-webkit-scrollbar-thumb {
-//    border-radius: 8px;
-//    background-color: #303038;
-//}
+.mainContainer::-webkit-scrollbar {
+    width: 4px;
+}
+
+.mainContainer::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.mainContainer::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: #303038;
+}

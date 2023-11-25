@@ -10,8 +10,8 @@ export const List: FC<ListProps> = ({items}) => {
   return (
     <div className={cls.mainContainer}>
       <div className={cls.List}>
-        {items.map(item => (
-          <Position key={item.id} positionData={item} />
+        {items.map((item, index) => (
+          <Position index={index} key={item.id} positionData={item} />
         ))}
       </div>
       <Button/>
