@@ -1,7 +1,12 @@
-import cls from "./Position.module.scss";
-import {FC} from "react";
-import DndHolder from "../../../assets/dndHolder.svg";
+"use client";
 
+import cls from "./Position.module.scss";
+import React, {FC} from "react";
+import DndHolder from "../../../assets/dndHolder.svg";
+import {useDispatch, useSelector} from "react-redux";
+import {getList} from "@/shared/List/model/selectors/getList/getList";
+import {getPosition} from "@/shared/Position/model/selectors/getPosition/getPosition";
+import {positionActions} from "@/shared/Position/model/slice/PositionSlice";
 export interface IPositionData {
   positionTitle: string,
   sumPerHour: number,
@@ -16,8 +21,16 @@ interface PositionProps {
 export const Position: FC<PositionProps> = ({positionData}) => {
   const {positionTitle, sumPerHour, otherInfo} = positionData
   
+  const dispatch = useDispatch()
+  const position = useSelector(getPosition)
+  const selectPosition = (e: React.MouseEvent<HTMLDivElement>) => {
+    dispatch(positionActions.selectPosition(positionData))
+  }
   return (
-    <div className={cls.mainContainer}>
+    <div
+      className={cls.mainContainer}
+      onClick={selectPosition}
+    >
       <div className={cls.dndHolder}>
         <DndHolder/>
       </div>
