@@ -20,13 +20,12 @@ export const Modal = (props: ModalProps) => {
     setValue(newValue);
   };
   
-  const positionsArray: IPositionData[] = Array.from({length: 10}, (_, i) => ({
-    id: i+1,
-    positionTitle: `Position ${i+1}`,
-    sumPerHour: 50 * (i+1),
-    otherInfo: `от ${10 + i} lvl`
-  }));
-  console.log(value)
+  const positionsArray: IPositionData[] = [{
+    id: 11,
+    positionTitle: `Position`,
+    sumPerHour: 50,
+    otherInfo: `от ${10} lvl`
+  }];
   return (
     <div className={cls.mainContainer}>
       <div className={cls.tabsContainer}>
@@ -40,7 +39,10 @@ export const Modal = (props: ModalProps) => {
         </Box>
         {value === 1 && (
           <div className={cls.tabContent}>
-            <div className={cls.leftSide}>List</div>
+            <div className={cls.leftSide}>
+              <List items={positionsArray} />
+              <Button className={cls.SaveButton}>Создать новую должность</Button>
+            </div>
             <div className={cls.rightSide}>
               <Block blockTitle="Название">
                 <Input />
