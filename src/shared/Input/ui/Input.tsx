@@ -5,9 +5,11 @@ import {set} from "immutable";
 interface InputProps {
   placeholder?: string,
   defaultValue?: string,
+  name:string,
+  onChange: () => void
 }
 
-export const Input: FC<InputProps> = ({defaultValue = '', placeholder}) => {
+export const Input: FC<InputProps> = ({defaultValue = '', name, placeholder, onChange}) => {
   const [value, setValue] = useState<string>(defaultValue)
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const target = e.target
@@ -22,6 +24,7 @@ export const Input: FC<InputProps> = ({defaultValue = '', placeholder}) => {
   
   return (
     <input
+      name={name}
       className={cls.Input}
       type="text"
       placeholder={placeholder}

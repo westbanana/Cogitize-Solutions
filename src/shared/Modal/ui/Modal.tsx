@@ -1,5 +1,5 @@
 'use client'
-import {SyntheticEvent, useState} from "react";
+import {SyntheticEvent, useEffect, useState} from "react";
 import {Box, Button, Tab, Tabs} from "@mui/material";
 
 import cls from "./Modal.module.scss";
@@ -21,13 +21,16 @@ export const Modal = (props: ModalProps) => {
   const dispatch = useDispatch()
   const selectedPosition = useSelector(getPosition)
   const positionList = useSelector(getList)
-  console.log(positionList)
   const addNewPosition = () => {
     dispatch(listActions.addPosition())
   }
   const handleChange = (event: SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
+  
+  useEffect(() => {
+    localStorage.setItem('list', JSON.stringify(positionList))
+  }, [positionList])
   
   return (
     <div className={cls.mainContainer}>
@@ -52,17 +55,9 @@ export const Modal = (props: ModalProps) => {
               </Button>
             </div>
               <div className={cls.rightSide}>
-            {selectedPosition && (
-              <>
-                <Block blockTitle="Название">
-                  <Input defaultValue={selectedPosition.positionTitle}/>
-                </Block>
-                <MultiBlock title="Обязаности">
+              {selectedPosition && (
                   <PositionForm currentPositionData={selectedPosition}/>
-                </MultiBlock>
-                <Button className={cls.SaveButton}>Сохранить</Button>
-              </>
-            )}
+              )}
               </div>
           </div>
         )}

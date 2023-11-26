@@ -34,7 +34,8 @@ export interface IPositionData {
   sumPerHour: number,
   otherInfo: string,
   id: string,
-  duties: IDuties | null
+  duties: IDuties | null,
+  position: number
 }
 
 interface PositionProps {
@@ -49,31 +50,39 @@ export const Position: FC<PositionProps> = ({positionData, index}) => {
   const position = useSelector(getPosition)
   const selectPosition = (e: React.MouseEvent<HTMLDivElement>) => {
     dispatch(positionActions.selectPosition(positionData))
+    console.log(positionData.position)
   }
   
   return (
-    <div
-      className={`
-              ${cls.mainContainer}
-              ${position?.id === positionData?.id && cls.selectedPosition}
-            `}
-      onClick={selectPosition}
-    >
-      <div className={cls.dndHolder}>
-        <DndHolder/>
-      </div>
-      <div className={cls.infoContainer}>
-        <div className={cls.upperInfoBlock}>
-          <span className={cls.positionTitle}>{positionTitle}</span>
-          <span className={cls.positionSumPerHour}>
-            <span className={cls.sum}>${sumPerHour}</span>
-            <span className={cls.hour}>/час</span>
-          </span>
+    <Draggable draggableId={positionData.id} index={index}>
+      {(provided) => (
+        <div
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+          ref={provided.innerRef}
+          className={`
+            ${cls.mainContainer}
+            ${position?.id === positionData?.id && cls.selectedPosition}
+          `}
+          onClick={selectPosition}
+        >
+          <div className={cls.dndHolder}>
+            <DndHolder/>
+          </div>
+          <div className={cls.infoContainer}>
+            <div className={cls.upperInfoBlock}>
+              <span className={cls.positionTitle}>{positionTitle}</span>
+              <span className={cls.positionSumPerHour}>
+                <span className={cls.sum}>${sumPerHour}</span>
+                <span className={cls.hour}>/час</span>
+              </span>
+            </div>
+            <div className={cls.lowerInfoBlock}>
+              <span className={cls.otherInfo}>{otherInfo}</span>
+            </div>
+          </div>
         </div>
-        <div className={cls.lowerInfoBlock}>
-          <span className={cls.otherInfo}>{otherInfo}</span>
-        </div>
-      </div>
-    </div>
+      )}
+    </Draggable>
   );
 };
